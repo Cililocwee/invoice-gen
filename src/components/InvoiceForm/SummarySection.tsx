@@ -5,7 +5,7 @@ interface SummarySectionProps {
     notes: string;
     terms: string;
     tax: number;
-    amountPaid: string;
+    amountPaid: number;
   };
   handleChange: (
     field: keyof SummarySectionProps["invoiceData"]
