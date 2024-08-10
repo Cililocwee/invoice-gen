@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Button,
   Flex,
@@ -10,18 +10,27 @@ import {
 import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import { v4 as uuidv4 } from "uuid";
 import LineItem from "./LineItem";
+import { InvoiceContext } from "./InvoiceContext";
 
 function LineItemContainer() {
   const [lineItems, setLineItems] = useState([{ id: uuidv4() }]); // Initial LineItem with UUID
-
+  const { invoiceData, setInvoiceData } = useContext(InvoiceContext);
   const addLineItem = () => {
-    setLineItems([...lineItems, { id: uuidv4() }]);
+    setInvoiceData({
+      ...invoiceData,
+      lineItems: [
+        ...invoiceData.lineItems,
+        { id: uuidv4(), quantity: 0, rate: 0 },
+      ],
+    });
   };
 
   const removeLineItem = (id) => {
-    if (lineItems.length > 1) {
-      const updatedLineItems = lineItems.filter((item) => item.id !== id);
-      setLineItems(updatedLineItems);
+    if (invoiceData.lineItems.length > 1) {
+      const updatedLineItems = invoiceData.lineItems.filter(
+        (item) => item.id !== id
+      );
+      setInvoiceData({ ...invoiceData, lineItems: updatedLineItems });
     }
   };
 
@@ -35,7 +44,7 @@ function LineItemContainer() {
       </Flex>
 
       <Stack spacing={4}>
-        {lineItems.map((item) => (
+        {invoiceData.lineItems.map((item) => (
           <HStack key={item.id} alignItems="flex-start">
             <LineItem />
             <IconButton

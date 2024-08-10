@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Flex,
   Text,
@@ -9,19 +9,33 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from "@chakra-ui/react";
+import { InvoiceContext } from "./InvoiceContext";
 
-function LineItem() {
+function LineItem({ id }) {
+  const { invoiceData, setInvoiceData } = useContext(InvoiceContext);
   const [quantity, setQuantity] = useState(0);
   const [rate, setRate] = useState(0);
 
   const handleQuantityChange = (valueString) => {
     const value = parseInt(valueString);
     setQuantity(value);
+    setInvoiceData({
+      ...invoiceData,
+      lineItems: invoiceData.lineItems.map((item) =>
+        item.id === id ? { ...item, quantity: value } : item
+      ),
+    });
   };
 
   const handleRateChange = (event) => {
     const value = parseFloat(event.target.value);
     setRate(value);
+    setInvoiceData({
+      ...invoiceData,
+      lineItems: invoiceData.lineItems.map((item) =>
+        item.id === id ? { ...item, rate: value } : item
+      ),
+    });
   };
 
   const amount = quantity * rate;
