@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   Button,
   Container,
@@ -23,8 +23,32 @@ import {
 import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import { v4 as uuidv4 } from "uuid";
 
+interface LineItem {
+  id: string;
+  itemLabel: string;
+  quantity: number;
+  rate: number;
+  itemTotal: number;
+}
+
+interface InvoiceData {
+  from: string;
+  billTo: string;
+  shipTo: string;
+  invoiceNumber: string;
+  date: string;
+  paymentTerms: string;
+  dueDate: string;
+  poNumber: string;
+  notes: string;
+  terms: string;
+  amountPaid: string;
+  tax: number;
+  lineItems: LineItem[];
+}
+
 const ConglomeratedForm = () => {
-  const [invoiceData, setInvoiceData] = useState({
+  const [invoiceData, setInvoiceData] = useState<InvoiceData>({
     from: "",
     billTo: "",
     shipTo: "",
@@ -42,26 +66,29 @@ const ConglomeratedForm = () => {
     ], // Initial line item
   });
 
-  const handleChange = (field) => (event) => {
-    setInvoiceData({ ...invoiceData, [field]: event.target.value });
-  };
+  const handleChange =
+    (field: keyof InvoiceData) =>
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setInvoiceData({ ...invoiceData, [field]: event.target.value });
+    };
 
-  const handleLineItemChange = (id, field) => (value) => {
-    setInvoiceData((prevData) => {
-      const updatedLineItems = prevData.lineItems.map((item) => {
-        if (item.id === id) {
-          const updatedItem = { ...item, [field]: value };
-          // Calculate itemTotal whenever quantity or rate changes
-          if (field === "quantity" || field === "rate") {
-            updatedItem.itemTotal = updatedItem.quantity * updatedItem.rate;
+  const handleLineItemChange =
+    (id: string, field: keyof LineItem) => (value: string | number) => {
+      setInvoiceData((prevData) => {
+        const updatedLineItems = prevData.lineItems.map((item) => {
+          if (item.id === id) {
+            const updatedItem = { ...item, [field]: value };
+            // Calculate itemTotal whenever quantity or rate changes
+            if (field === "quantity" || field === "rate") {
+              updatedItem.itemTotal = updatedItem.quantity * updatedItem.rate;
+            }
+            return updatedItem;
           }
-          return updatedItem;
-        }
-        return item;
+          return item;
+        });
+        return { ...prevData, lineItems: updatedLineItems };
       });
-      return { ...prevData, lineItems: updatedLineItems };
-    });
-  };
+    };
 
   const addLineItem = () => {
     setInvoiceData({
@@ -73,7 +100,7 @@ const ConglomeratedForm = () => {
     });
   };
 
-  const removeLineItem = (id) => {
+  const removeLineItem = (id: string) => {
     if (invoiceData.lineItems.length > 1) {
       const updatedLineItems = invoiceData.lineItems.filter(
         (item) => item.id !== id
