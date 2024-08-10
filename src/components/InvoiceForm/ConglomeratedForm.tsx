@@ -36,6 +36,7 @@ const ConglomeratedForm = () => {
     notes: "",
     terms: "",
     amountPaid: "",
+    tax: 0,
     lineItems: [
       { id: uuidv4(), itemLabel: "", quantity: 0, rate: 0, itemTotal: 0 },
     ], // Initial line item
@@ -260,11 +261,10 @@ const ConglomeratedForm = () => {
             <HStack>
               <Text>Tax:</Text>
               <Input
-                type="text"
-                value={invoiceData.tax}
+                type="number"
+                placeholder="e.g. 5"
                 onChange={handleChange("tax")}
               />
-              <Button size="sm">%</Button>
             </HStack>
           </VStack>
         </HStack>
@@ -278,7 +278,13 @@ const ConglomeratedForm = () => {
             />
           </VStack>
           <VStack align="flex-start">
-            <Text>Total: $200.00</Text>
+            <Text>
+              Total: $
+              {(
+                subtotal +
+                (subtotal * parseFloat(invoiceData.tax) || 0) / 100
+              ).toFixed(2)}
+            </Text>
             <HStack>
               <Text>Amount Paid:</Text>
               <Input
@@ -289,7 +295,14 @@ const ConglomeratedForm = () => {
             </HStack>
             <HStack>
               <Text>Balance Due:</Text>
-              <Text>$200.00</Text>
+              <Text>
+                $
+                {(
+                  subtotal +
+                  (subtotal * parseFloat(invoiceData.tax) || 0) / 100 -
+                  invoiceData.amountPaid
+                ).toFixed(2)}
+              </Text>
             </HStack>
           </VStack>
         </HStack>
