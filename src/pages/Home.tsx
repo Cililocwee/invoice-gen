@@ -1,17 +1,15 @@
 import {
-  Box,
   Button,
   Card,
   Divider,
   HStack,
-  Icon,
   Select,
   VStack,
 } from "@chakra-ui/react";
 import Hero from "../components/Hero";
-import InvoiceForm from "../components/InvoiceForm/InvoiceForm";
 import { DownloadIcon } from "@chakra-ui/icons";
-import { InvoiceProvider } from "../components/InvoiceForm/InvoiceContext";
+
+import ConglomeratedForm from "../components/InvoiceForm/ConglomeratedForm";
 
 export default function Home() {
   return (
@@ -19,9 +17,7 @@ export default function Home() {
       <Hero />
       <Card padding={"5em"}>
         <HStack maxW={"900px"} margin={"auto"}>
-          <InvoiceProvider>
-            <InvoiceForm />
-          </InvoiceProvider>
+          <ConglomeratedForm />
 
           <VStack
             marginBottom={"auto"}
