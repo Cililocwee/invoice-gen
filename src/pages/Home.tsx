@@ -16,21 +16,31 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <HStack>
-        <InvoiceForm />
-        <VStack marginBottom={"auto"} padding={"2em 1em"}>
-          <Button backgroundColor={"green"} color={"white"}>
-            <DownloadIcon />
-            Download
-          </Button>
-          <Divider margin={"1em 0"} />
-          <Select>
-            <option value="usd">$ USD</option>
-            <option value="vnd">₫ VND </option>
-            <option value="jpy">¥ JPY</option>
-          </Select>
-        </VStack>
-      </HStack>
+      <Card padding={"5em"}>
+        <HStack maxW={"900px"} margin={"auto"}>
+          <InvoiceForm />
+          <VStack
+            marginBottom={"auto"}
+            padding={"2em"}
+            borderLeft={"1px solid gray"}
+          >
+            <Button
+              backgroundColor={"green"}
+              color={"white"}
+              onClick={() => alert("Unimplemented")}
+            >
+              <DownloadIcon />
+              Download
+            </Button>
+            <Divider margin={"1em 0"} />
+            <Select>
+              <option value="usd">$ USD</option>
+              <option value="vnd">₫ VND </option>
+              <option value="jpy">¥ JPY</option>
+            </Select>
+          </VStack>
+        </HStack>
+      </Card>
     </div>
   );
 }
