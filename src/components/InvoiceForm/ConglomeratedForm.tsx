@@ -86,6 +86,11 @@ const ConglomeratedForm = () => {
     // TODO: Add API call logic here
   };
 
+  const subtotal = invoiceData.lineItems.reduce(
+    (total, item) => total + item.itemTotal,
+    0
+  );
+
   return (
     <Container maxW={"container.lg"} margin={"auto"}>
       <Box p={4}>
@@ -191,14 +196,6 @@ const ConglomeratedForm = () => {
                   justifyContent="space-between"
                   gap={"1em"}
                 >
-                  <Checkbox
-                    onChange={(e) =>
-                      handleLineItemChange(
-                        item.id,
-                        "isComplete"
-                      )(e.target.checked)
-                    }
-                  />
                   <Input
                     placeholder="Enter item"
                     onChange={(e) =>
@@ -243,12 +240,8 @@ const ConglomeratedForm = () => {
         </Stack>
 
         <Flex justifyContent="center" p={4}>
-          <Button
-            leftIcon={<AddIcon />}
-            colorScheme="green"
-            onClick={addLineItem}
-          >
-            Add Line Item
+          <Button colorScheme="green" onClick={addLineItem}>
+            <AddIcon />
           </Button>
         </Flex>
       </Stack>
@@ -263,7 +256,7 @@ const ConglomeratedForm = () => {
             />
           </VStack>
           <VStack align="flex-start">
-            <Text>Subtotal: $200.00</Text>
+            <Text>Subtotal: ${subtotal.toFixed(2)}</Text>
             <HStack>
               <Text>Tax:</Text>
               <Input
