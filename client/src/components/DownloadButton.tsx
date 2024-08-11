@@ -14,13 +14,20 @@ export default function DownloadButton({ invoice }: DownloadButtonProps) {
         "http://localhost:3000/generate-invoice",
         invoice,
         {
+          responseType: "blob", // Important to handle the PDF as a blob
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
 
-      console.log("Response from server:", response.data);
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "invoice.pdf");
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
     } catch (error) {
       console.error("Error sending invoice data:", error);
     }
@@ -30,7 +37,7 @@ export default function DownloadButton({ invoice }: DownloadButtonProps) {
     <Button
       backgroundColor={"green"}
       color={"white"}
-      onClick={() => handlePing(invoice)} // Call the function on click
+      onClick={() => handlePing(invoice)}
     >
       <DownloadIcon />
       Download
