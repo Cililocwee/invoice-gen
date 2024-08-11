@@ -1,14 +1,5 @@
-import {
-  Button,
-  Card,
-  Divider,
-  HStack,
-  Select,
-  VStack,
-} from "@chakra-ui/react";
+import { Card, Divider, HStack, Select, VStack } from "@chakra-ui/react";
 import Hero from "../components/Hero.js";
-import { DownloadIcon } from "@chakra-ui/icons";
-import { invoice as FakeInvoice } from "../functions/sendInvoice.js";
 
 import ConglomeratedForm from "../components/InvoiceForm/ConglomeratedForm.js";
 import DownloadButton from "../components/DownloadButton.js";
@@ -26,15 +17,7 @@ export default function Home() {
             padding={"2em"}
             borderLeft={"1px solid gray"}
           >
-            {/* <Button
-              backgroundColor={"green"}
-              color={"white"}
-              onClick={() => generateInvoice(invoice)}
-            >
-              <DownloadIcon />
-              Download
-            </Button> */}
-            <DownloadButton invoice={FakeInvoice} />
+            {/* <DownloadButton /> */}
             <Divider margin={"1em 0"} />
             <Select>
               <option value="usd">$ USD</option>

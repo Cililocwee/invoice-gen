@@ -26,7 +26,6 @@ app.post("/generate-invoice", (req, res) => {
   try {
     const invoiceData = req.body;
 
-    // !! UNSTABLE TEST
     function generateInvoice(invoice, filename, success, error) {
       const postData = JSON.stringify(invoice);
       const options = {
@@ -64,31 +63,30 @@ app.post("/generate-invoice", (req, res) => {
       }
     }
 
-    const testInvoice = {
-      from: "Nikolaus Ltd\n123 Main St\nAustin, TX 78701",
-      to: "Acme, Corp.\n456 Main St\nAustin, TX 78701",
+    const structuredInvoiceData = {
+      from: invoiceData.from,
+      to: invoiceData.billTo,
+      date: invoiceData.date,
+      due_date: invoiceData.dueDate,
+      amount_paid: invoiceData.amountPaid,
       currency: "usd",
-      number: "INV-0001",
-      payment_terms: "Auto-Billed - Do Not Pay",
-      items: [
-        {
-          name: "Starter plan monthly",
-          quantity: 1,
-          unit_cost: 99,
-        },
-      ],
+      number: invoiceData.invoiceNumber,
+      payment_terms: invoiceData.paymentTerms,
+      items: invoiceData.lineItems.map((item) => ({
+        name: item.itemLabel,
+        quantity: item.quantity,
+        unit_cost: item.rate,
+      })),
       fields: {
         tax: "%",
       },
-      tax: 5,
-      notes: "Thanks for being an awesome customer!",
-      terms:
-        "No need to submit payment. You will be auto-billed for this invoice.",
+      tax: invoiceData.tax,
+      notes: invoiceData.notes,
+      terms: invoiceData.terms,
     };
 
-    // !! Using testInvoice, should switch to invoiceData
     generateInvoice(
-      testInvoice,
+      structuredInvoiceData,
       "invoice.pdf",
       function () {
         console.log("Saved invoice to invoice.pdf");

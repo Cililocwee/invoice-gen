@@ -1,7 +1,7 @@
 import { DownloadIcon } from "@chakra-ui/icons";
 import { Button } from "@chakra-ui/react";
 import axios from "axios";
-import { InvoiceData } from "./InvoiceForm/ConglomeratedForm";
+import { InvoiceData } from "../interfaces/interfaces";
 
 interface DownloadButtonProps {
   invoice: InvoiceData;
