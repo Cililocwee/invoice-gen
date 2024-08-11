@@ -6,10 +6,12 @@ import {
   Select,
   VStack,
 } from "@chakra-ui/react";
-import Hero from "../components/Hero";
+import Hero from "../components/Hero.js";
 import { DownloadIcon } from "@chakra-ui/icons";
+import { invoice as FakeInvoice } from "../functions/sendInvoice.js";
 
-import ConglomeratedForm from "../components/InvoiceForm/ConglomeratedForm";
+import ConglomeratedForm from "../components/InvoiceForm/ConglomeratedForm.js";
+import DownloadButton from "../components/DownloadButton.js";
 
 export default function Home() {
   return (
@@ -24,14 +26,15 @@ export default function Home() {
             padding={"2em"}
             borderLeft={"1px solid gray"}
           >
-            <Button
+            {/* <Button
               backgroundColor={"green"}
               color={"white"}
-              onClick={() => alert("Unimplemented")}
+              onClick={() => generateInvoice(invoice)}
             >
               <DownloadIcon />
               Download
-            </Button>
+            </Button> */}
+            <DownloadButton invoice={FakeInvoice} />
             <Divider margin={"1em 0"} />
             <Select>
               <option value="usd">$ USD</option>
