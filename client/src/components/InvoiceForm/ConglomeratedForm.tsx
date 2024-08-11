@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import HeaderSection from "./HeaderSection";
 import LineItemsSection from "./LineItemsSection";
 import SummarySection from "./SummarySection";
+import DownloadButton from "../DownloadButton";
 
 interface LineItem {
   id: string;
@@ -14,7 +15,7 @@ interface LineItem {
   itemTotal: number;
 }
 
-interface InvoiceData {
+export interface InvoiceData {
   from: string;
   billTo: string;
   shipTo: string;
@@ -123,6 +124,8 @@ const ConglomeratedForm = () => {
       <Button onClick={handleSubmit} colorScheme="blue" margin={4}>
         Submit Invoice
       </Button>
+
+      <DownloadButton invoice={invoiceData} />
     </Container>
   );
 };
