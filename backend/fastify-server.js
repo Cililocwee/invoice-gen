@@ -1,9 +1,8 @@
-// import Fastify from "fastify";
 const fastify = require("fastify")({
   logger: true,
 });
 
-const generateInvoicePlugin = require("./plugins/generateInvoice");
+const generateInvoicePlugin = require("./plugins/generateInvoicePlugin");
 
 fastify.register(require("@fastify/cors"), {
   origin: "*",
@@ -28,10 +27,12 @@ fastify.register(require("@fastify/env"), {
   dotenv: true,
 });
 
+// Default landing for backend
 fastify.get("/", (req, res) => {
-  res.send("Hello world");
+  res.send("This is the backend to InvoiceGen");
 });
 
+// Invoice Route
 fastify.register(generateInvoicePlugin);
 
 fastify.listen({ port: 3000 }, function (err, address) {
