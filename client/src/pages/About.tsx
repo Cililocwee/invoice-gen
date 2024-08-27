@@ -31,13 +31,13 @@ export default function About() {
         <Heading as="h2" size="lg">
           Why’d I make InvoiceGen?
         </Heading>
-        <Text fontSize="lg" color="gray.600">
+        <Text fontSize="lg">
           Because I tend to make a lot of one-off invoices here and there and I
           wanted something that fit exactly my use case. There are tons of
           invoice generators out there that have too many options or, simply, I
           didn’t like the interface.
         </Text>
-        <Text fontSize="lg" color="gray.600">
+        <Text fontSize="lg">
           InvoiceGen started as a personal project/tool I used for my own needs.
           It's evolved into something else entirely now and I hope you find some
           use for it!
@@ -46,14 +46,14 @@ export default function About() {
         <Heading as="h2" size="lg">
           Support
         </Heading>
-        <Text fontSize="lg" color="gray.600">
+        <Text fontSize="lg">
           Something happen that you didn't like? Got an idea how to make the
           interface better?
         </Text>
-        <Text fontSize="lg" color="gray.600">
+        <Text fontSize="lg">
           I'd love to hear your ideas to make InvoiceGen more useful.
         </Text>
-        <Text fontSize="lg" color="gray.600">
+        <Text fontSize="lg">
           Github is the best place to contact me! You can{" "}
           <Link
             href="https://github.com/Cililocwee/invoice-gen/issues"
