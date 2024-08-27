@@ -9,12 +9,11 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  IconButton,
   Button,
   Grid,
-  Box,
+  CloseButton,
 } from "@chakra-ui/react";
-import { AddIcon, CloseIcon } from "@chakra-ui/icons";
+import { AddIcon } from "@chakra-ui/icons";
 
 interface LineItem {
   id: string;
@@ -99,11 +98,8 @@ const LineItemsSection: React.FC<LineItemsSectionProps> = ({
                 </Flex>
               </Grid>
             </Flex>
-            <IconButton
-              aria-label="Delete Line Item"
-              icon={<CloseIcon />}
-              size={{ base: "xsm", md: "sm" }}
-              colorScheme="red"
+            <CloseButton
+              size="sm"
               margin={"auto"}
               onClick={() => removeLineItem(item.id)}
             />
