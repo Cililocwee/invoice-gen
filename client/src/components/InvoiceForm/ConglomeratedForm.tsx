@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { Container, Box, Button } from "@chakra-ui/react";
+import { Container, Box } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 
 import HeaderSection from "./HeaderSection";
@@ -23,7 +23,7 @@ const ConglomeratedForm = () => {
     amountPaid: 0,
     tax: 0,
     lineItems: [
-      { id: uuidv4(), itemLabel: "", quantity: 0, rate: 0, itemTotal: 0 },
+      { id: uuidv4(), itemLabel: "", quantity: 1, rate: 0, itemTotal: 0 },
     ],
   });
 
@@ -55,7 +55,7 @@ const ConglomeratedForm = () => {
       ...invoiceData,
       lineItems: [
         ...invoiceData.lineItems,
-        { id: uuidv4(), itemLabel: "", quantity: 0, rate: 0, itemTotal: 0 },
+        { id: uuidv4(), itemLabel: "", quantity: 1, rate: 0, itemTotal: 0 },
       ],
     });
   };
