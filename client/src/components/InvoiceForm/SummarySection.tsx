@@ -30,43 +30,56 @@ const SummarySection: React.FC<SummarySectionProps> = ({
         direction={{ base: "column", md: "row" }}
         justifyContent="space-between"
       >
-        <VStack align="stretch" flex="1" pr={4}>
+        <VStack align="stretch" flex="1" pb={2}>
           <Textarea
+            maxW={"30em"}
             placeholder="Notes"
             value={invoiceData.notes}
             onChange={handleChange("notes")}
           />
         </VStack>
-        <VStack align="flex-end">
+        <Stack
+          align={{ base: "center", md: "flex-end" }}
+          justify={{ base: "space-between" }}
+          direction={{ base: "row-reverse", md: "column-reverse" }}
+        >
           <Text>Subtotal: ${subtotal.toFixed(2)}</Text>
           <HStack>
             <Text>Tax:</Text>
             <Input
+              maxW={"5em"}
               type="number"
               placeholder="e.g. 5"
               value={invoiceData.tax}
               onChange={handleChange("tax")}
             />
+            <Text>%</Text>
           </HStack>
-        </VStack>
+        </Stack>
       </Stack>
 
       <Stack
         direction={{ base: "column", md: "row" }}
         justifyContent="space-between"
       >
-        <VStack align="stretch" flex="1" pr={4}>
+        <VStack align="stretch" flex="1" pb={2}>
           <Textarea
-            placeholder="Terms"
+            maxW={"30em"}
+            placeholder="Terms and Agreements"
             value={invoiceData.terms}
             onChange={handleChange("terms")}
           />
         </VStack>
-        <VStack align="flex-end">
-          <Text>Total: ${total.toFixed(2)}</Text>
+        <Stack
+          align={{ base: "center", md: "flex-end" }}
+          justify={{ base: "space-between" }}
+          direction={{ base: "row", md: "column" }}
+        >
+          {/* <Text>Total: ${total.toFixed(2)}</Text> */}
           <HStack>
             <Text>Amount Paid:</Text>
             <Input
+              maxWidth={"5em"}
               type="number"
               value={invoiceData.amountPaid}
               onChange={handleChange("amountPaid")}
@@ -76,7 +89,7 @@ const SummarySection: React.FC<SummarySectionProps> = ({
             <Text>Balance Due:</Text>
             <Text>${balanceDue.toFixed(2)}</Text>
           </HStack>
-        </VStack>
+        </Stack>
       </Stack>
     </VStack>
   );
