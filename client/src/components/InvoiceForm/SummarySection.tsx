@@ -1,4 +1,4 @@
-import { VStack, HStack, Textarea, Text, Input } from "@chakra-ui/react";
+import { VStack, HStack, Textarea, Text, Input, Stack } from "@chakra-ui/react";
 
 interface SummarySectionProps {
   invoiceData: {
@@ -26,7 +26,10 @@ const SummarySection: React.FC<SummarySectionProps> = ({
 
   return (
     <VStack align="stretch" spacing={4} p={4}>
-      <HStack justifyContent="space-between">
+      <Stack
+        direction={{ base: "column", md: "row" }}
+        justifyContent="space-between"
+      >
         <VStack align="stretch" flex="1" pr={4}>
           <Textarea
             placeholder="Notes"
@@ -46,9 +49,12 @@ const SummarySection: React.FC<SummarySectionProps> = ({
             />
           </HStack>
         </VStack>
-      </HStack>
+      </Stack>
 
-      <HStack justifyContent="space-between">
+      <Stack
+        direction={{ base: "column", md: "row" }}
+        justifyContent="space-between"
+      >
         <VStack align="stretch" flex="1" pr={4}>
           <Textarea
             placeholder="Terms"
@@ -71,7 +77,7 @@ const SummarySection: React.FC<SummarySectionProps> = ({
             <Text>${balanceDue.toFixed(2)}</Text>
           </HStack>
         </VStack>
-      </HStack>
+      </Stack>
     </VStack>
   );
 };

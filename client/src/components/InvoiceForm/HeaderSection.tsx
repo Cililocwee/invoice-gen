@@ -5,6 +5,7 @@ import {
   Input,
   HStack,
   VStack,
+  Stack,
 } from "@chakra-ui/react";
 
 interface HeaderSectionProps {
@@ -30,7 +31,11 @@ const HeaderSection: React.FC<HeaderSectionProps> = ({
   handleChange,
 }) => {
   return (
-    <HStack spacing={4}>
+    <Stack
+      direction={{ base: "column", md: "row" }}
+      spacing={4}
+      justifyContent={"space-between"}
+    >
       <VStack marginTop={"auto"}>
         <FormControl id="invoiceNumber">
           <FormLabel>Invoice #</FormLabel>
@@ -111,7 +116,7 @@ const HeaderSection: React.FC<HeaderSectionProps> = ({
           />
         </FormControl>
       </VStack>
-    </HStack>
+    </Stack>
   );
 };
 
