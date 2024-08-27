@@ -1,16 +1,9 @@
-"use client";
-
-import {
-  Stack,
-  Flex,
-  Button,
-  Text,
-  VStack,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { Stack, Flex, Button, Text, VStack } from "@chakra-ui/react";
 import HeroImg from "../assets/hero.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
+  const navigate = useNavigate();
   return (
     <Flex
       w={"full"}
@@ -22,20 +15,21 @@ export default function Hero() {
       <VStack
         w={"full"}
         justify={"center"}
-        px={useBreakpointValue({ base: 4, md: 8 })}
+        px={{ base: 4, md: 8 }}
         bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
       >
-        <Stack maxW={"2xl"} align={"flex-start"} spacing={6}>
+        <Stack maxW={"2xl"} textAlign="center" spacing={6} maxWidth={"600px"}>
           <Text
             color={"white"}
             fontWeight={700}
             lineHeight={1.2}
-            fontSize={useBreakpointValue({ base: "3xl", md: "4xl" })}
+            fontSize={{ base: "3xl", md: "4xl" }}
           >
-            Quick and easy to use invoicing <br></br>available instantly
+            Quick and easy invoicing instantly
           </Text>
-          <Stack direction={"row"}>
+          <Flex justify={"center"}>
             <Button
+              onClick={() => navigate("/about")}
               bg={"blue.400"}
               rounded={"full"}
               color={"white"}
@@ -43,15 +37,7 @@ export default function Hero() {
             >
               About This Site
             </Button>
-            <Button
-              bg={"whiteAlpha.300"}
-              rounded={"full"}
-              color={"white"}
-              _hover={{ bg: "whiteAlpha.500" }}
-            >
-              New to Invoicing
-            </Button>
-          </Stack>
+          </Flex>
         </Stack>
       </VStack>
     </Flex>

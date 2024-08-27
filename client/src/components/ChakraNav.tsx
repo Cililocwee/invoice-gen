@@ -1,13 +1,9 @@
-"use client";
-
 import {
   Box,
   Flex,
   Button,
   useColorModeValue,
-  Stack,
   useColorMode,
-  HStack,
   Image,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
@@ -26,24 +22,9 @@ export default function ChakraNav() {
               <Image src={HeaderIcon} height={"50px"} objectFit={"contain"} />
             </Link>
           </Box>
-          <Box>
-            <HStack>
-              {/* <Link to={"/about"}>About</Link>
-              <Link to={"/help"}>Help</Link>
-              <Link to={"/invoicing-guide"}>Invoice Guide</Link> */}
-            </HStack>
-          </Box>
-          <Flex alignItems={"center"}>
-            <Stack direction={"row"} spacing={7}>
-              <Button onClick={toggleColorMode}>
-                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-              </Button>
-              <HStack>
-                <Button>Sign In</Button>
-                <Button variant={"inverted"}>Sign Up</Button>
-              </HStack>
-            </Stack>
-          </Flex>
+          <Button onClick={toggleColorMode}>
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+          </Button>
         </Flex>
       </Box>
     </>
