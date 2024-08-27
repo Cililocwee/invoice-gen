@@ -41,7 +41,7 @@ const SummarySection: React.FC<SummarySectionProps> = ({
         <Stack
           align={{ base: "center", md: "flex-end" }}
           justify={{ base: "space-between" }}
-          direction={{ base: "row-reverse", md: "column-reverse" }}
+          direction={{ base: "row", md: "column" }}
         >
           <Text>Subtotal: ${subtotal.toFixed(2)}</Text>
           <HStack>

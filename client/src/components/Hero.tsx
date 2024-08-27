@@ -35,7 +35,7 @@ export default function Hero() {
               color={"white"}
               _hover={{ bg: "blue.500" }}
             >
-              About This Site
+              About InvoiceGen
             </Button>
           </Flex>
         </Stack>

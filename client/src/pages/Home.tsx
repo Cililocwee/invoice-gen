@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <Card padding={".5em"}>
+      <Card padding={".5em"} marginTop={{ base: "1em", md: "3em" }}>
         <HStack maxW={"900px"} margin={"auto"}>
           <ConglomeratedForm />
         </HStack>
