@@ -37,7 +37,7 @@ const SummarySection: React.FC<SummarySectionProps> = ({
             onChange={handleChange("notes")}
           />
         </VStack>
-        <VStack align="flex-start">
+        <VStack align="flex-end">
           <Text>Subtotal: ${subtotal.toFixed(2)}</Text>
           <HStack>
             <Text>Tax:</Text>
@@ -62,7 +62,7 @@ const SummarySection: React.FC<SummarySectionProps> = ({
             onChange={handleChange("terms")}
           />
         </VStack>
-        <VStack align="flex-start">
+        <VStack align="flex-end">
           <Text>Total: ${total.toFixed(2)}</Text>
           <HStack>
             <Text>Amount Paid:</Text>
