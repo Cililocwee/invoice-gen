@@ -75,7 +75,6 @@ const SummarySection: React.FC<SummarySectionProps> = ({
           justify={{ base: "space-between" }}
           direction={{ base: "row", md: "column" }}
         >
-          {/* <Text>Total: ${total.toFixed(2)}</Text> */}
           <HStack>
             <Text>Amount Paid:</Text>
             <Input

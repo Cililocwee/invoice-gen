@@ -5,16 +5,14 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const https = require("https");
-// const fs = require("fs");
 
 require("dotenv").config();
 const apiKey = process.env.API_KEY;
 
-// Middleware
 app.use(cors());
-app.use(helmet()); // Adds security-related headers to responses
-app.use(morgan("combined")); // Logs incoming requests
-app.use(express.json()); // Automatically parse JSON bodies
+app.use(helmet());
+app.use(morgan("combined"));
+app.use(express.json());
 
 const generateInvoice = (invoice) => {
   return new Promise((resolve, reject) => {
@@ -51,7 +49,7 @@ const generateInvoice = (invoice) => {
     req.end();
   });
 };
-// Basic route for health check
+
 app.get("/", (req, res) => {
   res.json({ message: "Server is running" });
 });
@@ -99,7 +97,6 @@ app.post("/generate-invoice", async (req, res) => {
   }
 });
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

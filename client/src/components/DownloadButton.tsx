@@ -14,7 +14,7 @@ export default function DownloadButton({ invoice }: DownloadButtonProps) {
         "http://localhost:3000/generate-invoice",
         invoice,
         {
-          responseType: "blob", // Important to handle the PDF as a blob
+          responseType: "blob",
           headers: {
             "Content-Type": "application/json",
           },
