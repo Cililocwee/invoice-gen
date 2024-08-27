@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
-import HeaderIcon from "../assets/headericon.jpg";
+import HeaderIcon from "../assets/invoicegen.jpg";
 
 export default function ChakraNav() {
   const { colorMode, toggleColorMode } = useColorMode();

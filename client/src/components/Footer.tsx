@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { ReactNode } from "react";
-import FooterIcon from "../assets/footicon.jpg";
+import FooterIcon from "../assets/invoicegen.jpg";
 
 const Logo = () => {
   return (
