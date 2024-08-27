@@ -25,7 +25,7 @@ export default function Hero() {
             lineHeight={1.2}
             fontSize={{ base: "3xl", md: "4xl" }}
           >
-            Quick and easy invoicing instantly
+            Quick and easy invoicing
           </Text>
           <Flex justify={"center"}>
             <Button
