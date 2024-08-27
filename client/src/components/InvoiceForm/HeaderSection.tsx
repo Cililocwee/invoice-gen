@@ -5,7 +5,6 @@ import {
   Input,
   HStack,
   VStack,
-  extendTheme,
 } from "@chakra-ui/react";
 
 interface HeaderSectionProps {
@@ -33,6 +32,15 @@ const HeaderSection: React.FC<HeaderSectionProps> = ({
   return (
     <HStack spacing={4}>
       <VStack marginTop={"auto"}>
+        <FormControl id="invoiceNumber">
+          <FormLabel>Invoice #</FormLabel>
+          <Input
+            width={"8em"}
+            type="text"
+            value={invoiceData.invoiceNumber}
+            onChange={handleChange("invoiceNumber")}
+          />
+        </FormControl>
         <FormControl id="from">
           <FormLabel>From</FormLabel>
           <Textarea
@@ -67,15 +75,6 @@ const HeaderSection: React.FC<HeaderSectionProps> = ({
       </VStack>
 
       <VStack>
-        <FormControl id="invoiceNumber">
-          <FormLabel>Invoice #</FormLabel>
-          <Input
-            type="text"
-            value={invoiceData.invoiceNumber}
-            onChange={handleChange("invoiceNumber")}
-          />
-        </FormControl>
-
         <FormControl id="date">
           <FormLabel>Date</FormLabel>
           <Input
