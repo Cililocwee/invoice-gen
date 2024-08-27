@@ -11,6 +11,8 @@ import {
   NumberDecrementStepper,
   IconButton,
   Button,
+  Grid,
+  Box,
 } from "@chakra-ui/react";
 import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 
@@ -40,22 +42,29 @@ const LineItemsSection: React.FC<LineItemsSectionProps> = ({
 }) => {
   return (
     <Stack>
-      <Flex bg="black" color="white" p={2} justifyContent="space-between">
+      <Grid
+        bg="black"
+        color="white"
+        p={2}
+        templateColumns="repeat(4, 1fr)"
+        gap={6}
+        textAlign={"center"}
+      >
         <Text>Item</Text>
         <Text>Quantity</Text>
         <Text>Rate</Text>
         <Text>Amount</Text>
-      </Flex>
+      </Grid>
 
       <Stack spacing={4}>
         {lineItems.map((item) => (
           <HStack key={item.id} alignItems="flex-start">
             <Flex direction="column" flex="1">
-              <Flex
-                p={2}
-                alignItems="center"
-                justifyContent="space-between"
-                gap={"1em"}
+              <Grid
+                templateColumns="1fr 1fr 1fr 0.5fr"
+                alignItems={"center"}
+                justifyItems={"end"}
+                gap={".5em"}
               >
                 <Input
                   placeholder="Enter item"
@@ -85,13 +94,15 @@ const LineItemsSection: React.FC<LineItemsSectionProps> = ({
                     )(parseFloat(e.target.value) || 0)
                   }
                 />
-                <Text>${item.itemTotal.toFixed(2)}</Text>
-              </Flex>
+                <Flex maxW={{ base: "3em", md: "6em" }}>
+                  <Text>${item.itemTotal.toFixed(2)}</Text>
+                </Flex>
+              </Grid>
             </Flex>
             <IconButton
               aria-label="Delete Line Item"
               icon={<CloseIcon />}
-              size="sm"
+              size={{ base: "xsm", md: "sm" }}
               colorScheme="red"
               margin={"auto"}
               onClick={() => removeLineItem(item.id)}
