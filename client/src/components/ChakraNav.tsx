@@ -3,54 +3,20 @@
 import {
   Box,
   Flex,
-  Avatar,
-  Text,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
   useColorModeValue,
   Stack,
   useColorMode,
-  Center,
   HStack,
   Image,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import About from "../pages/About";
 import { Link } from "react-router-dom";
 import HeaderIcon from "../assets/headericon.jpg";
 
-interface Props {
-  children: React.ReactNode;
-}
-
-const NavLink = (props: Props) => {
-  const { children } = props;
-
-  return (
-    <Box
-      as="a"
-      px={2}
-      py={1}
-      rounded={"md"}
-      _hover={{
-        textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
-      }}
-      href={"#"}
-    >
-      {children}
-    </Box>
-  );
-};
-
 export default function ChakraNav() {
   const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -62,9 +28,9 @@ export default function ChakraNav() {
           </Box>
           <Box>
             <HStack>
-              <Link to={"/about"}>About</Link>
+              {/* <Link to={"/about"}>About</Link>
               <Link to={"/help"}>Help</Link>
-              <Link to={"/invoicing-guide"}>Invoice Guide</Link>
+              <Link to={"/invoicing-guide"}>Invoice Guide</Link> */}
             </HStack>
           </Box>
           <Flex alignItems={"center"}>

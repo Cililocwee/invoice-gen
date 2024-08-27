@@ -69,11 +69,6 @@ const ConglomeratedForm = () => {
     }
   };
 
-  const handleSubmit = async () => {
-    console.log(invoiceData);
-    // TODO: Add API call logic here
-  };
-
   const subtotal = invoiceData.lineItems.reduce(
     (total, item) => total + item.itemTotal,
     0
@@ -98,11 +93,9 @@ const ConglomeratedForm = () => {
         subtotal={subtotal}
       />
 
-      <Button onClick={handleSubmit} colorScheme="blue" margin={4}>
-        Submit Invoice
-      </Button>
-
-      <DownloadButton invoice={invoiceData} />
+      <Box display={"flex"} justifyContent={"center"} padding={"2em"}>
+        <DownloadButton invoice={invoiceData} />
+      </Box>
     </Container>
   );
 };

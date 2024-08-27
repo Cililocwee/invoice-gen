@@ -5,6 +5,7 @@ import {
   Input,
   HStack,
   VStack,
+  extendTheme,
 } from "@chakra-ui/react";
 
 interface HeaderSectionProps {
