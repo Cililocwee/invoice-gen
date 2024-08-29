@@ -52,6 +52,7 @@ const generateInvoice = (invoice) => {
 };
 
 app.get("/", (req, res) => {
+  res.send("Server is running");
   res.json({ message: "Server is running" });
 });
 
