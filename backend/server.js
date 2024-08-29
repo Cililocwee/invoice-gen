@@ -8,8 +8,16 @@ const https = require("https");
 
 require("dotenv").config();
 const apiKey = process.env.API_KEY;
+const corsOrigin = process.env.CORS_ORIGIN;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: corsOrigin,
+    methods: ["POST", "GET"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
+
 app.use(helmet());
 app.use(morgan("combined"));
 app.use(express.json());
