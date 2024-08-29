@@ -8,18 +8,18 @@ interface DownloadButtonProps {
 }
 
 export default function DownloadButton({ invoice }: DownloadButtonProps) {
+  const BACKEND_URL =
+    import.meta.env.VITE_BACKEND_URL ||
+    "http://localhost:3000/generate-invoice";
+
   const handlePing = async (invoice: InvoiceData) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/generate-invoice",
-        invoice,
-        {
-          responseType: "blob",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post(BACKEND_URL, invoice, {
+        responseType: "blob",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
