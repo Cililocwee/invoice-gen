@@ -5,6 +5,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const https = require("https");
+const { createServer } = require("http");
 
 require("dotenv").config();
 const apiKey = process.env.API_KEY;
@@ -99,6 +100,11 @@ app.post("/generate-invoice", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+module.exports = app;
+
+if (process.env.NODE_ENV !== "production") {
+  const server = createServer(app);
+  server.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+  });
+}
