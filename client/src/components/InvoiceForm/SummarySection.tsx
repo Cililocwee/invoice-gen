@@ -22,7 +22,7 @@ const SummarySection: React.FC<SummarySectionProps> = ({
 }) => {
   const taxAmount = (subtotal * invoiceData.tax || 0) / 100;
   const total = subtotal + taxAmount;
-  const balanceDue = total - parseFloat(invoiceData.amountPaid) || 0;
+  const balanceDue = total - invoiceData.amountPaid || 0;
 
   return (
     <VStack align="stretch" spacing={4} p={4}>
