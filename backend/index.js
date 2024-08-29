@@ -6,11 +6,19 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const { createServer } = require("http");
 
-const invoices = require("./routes/invoiceRouter");
-
 require("dotenv").config();
 
-app.use(cors());
+//Routers
+const invoices = require("./routes/invoiceRouter");
+
+// middelware
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.use(helmet());
 app.use(morgan("combined"));

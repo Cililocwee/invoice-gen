@@ -9,5 +9,8 @@
     "fastify": "^4.28.1",
     "helmet": "^7.1.0",
     "morgan": "^1.10.0"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }
