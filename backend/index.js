@@ -17,8 +17,10 @@ app.use(
     origin: "*",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 204,
   })
 );
+app.options("*", cors());
 
 app.use(helmet());
 app.use(morgan("combined"));
