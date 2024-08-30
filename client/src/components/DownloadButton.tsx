@@ -10,7 +10,7 @@ interface DownloadButtonProps {
 export default function DownloadButton({ invoice }: DownloadButtonProps) {
   const BACKEND_URL =
     import.meta.env.VITE_BACKEND_URL ||
-    "http://localhost:3000/generate-invoice";
+    "http://localhost:3000/invoices/generate-invoice";
 
   const handlePing = async (invoice: InvoiceData) => {
     try {

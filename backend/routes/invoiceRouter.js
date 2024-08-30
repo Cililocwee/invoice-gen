@@ -1,19 +1,6 @@
 const express = require("express");
-const app = express();
-const port = process.env.PORT || 3000;
-const cors = require("cors");
-const helmet = require("helmet");
-const morgan = require("morgan");
+const router = express.Router();
 const https = require("https");
-
-require("dotenv").config();
-const apiKey = process.env.API_KEY;
-
-app.use(cors());
-
-app.use(helmet());
-app.use(morgan("combined"));
-app.use(express.json());
 
 const generateInvoice = (invoice) => {
   return new Promise((resolve, reject) => {
@@ -24,7 +11,7 @@ const generateInvoice = (invoice) => {
       path: "/",
       method: "POST",
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Bearer ${process.env.API_KEY}`,
         "Content-Type": "application/json",
         "Content-Length": Buffer.byteLength(postData),
       },
@@ -51,11 +38,11 @@ const generateInvoice = (invoice) => {
   });
 };
 
-app.get("/", (req, res) => {
-  res.json({ message: "Server is running" });
+router.get("/", async (req, res) => {
+  res.send("Invoices endpoint");
 });
 
-app.post("/generate-invoice", async (req, res) => {
+router.post("/generate-invoice", async (req, res) => {
   try {
     const invoiceData = req.body;
 
@@ -98,6 +85,4 @@ app.post("/generate-invoice", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+module.exports = router;
